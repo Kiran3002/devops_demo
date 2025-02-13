@@ -85,5 +85,66 @@ class category(models.Model):
 
     def __str__(self):
         return self.cat_name
-    
 
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" >
+        {% csrf_token %}
+        <br>
+        <h3>Add student</h3>
+        <hr>
+        <div class="col-12">
+          <label for="exampleInputEmail1">Student Name</label>
+          <input name="name" id="name" type="text" class="form-control" >
+         </div>
+        <div class="col-12">
+          <label for="exampleInputPassword1"  >Email</label>
+          <input name="email" id="email" type="email" class="form-control" >
+        </div>
+        <div class="col-12">
+            <label for="exampleInputPassword1"  >Register Number</label>
+            <input name="register_number" id="register_number" type="number" class="form-control" >
+        </div>
+        <div class="col-12">
+            <label for="exampleInputPassword1"  >Course</label>
+            <input name="course" id="course" type="text" class="form-control" >
+        </div>
+        <div class="col-12">
+            <label for="exampleInputPassword1"  >Batch</label>
+            <input name="batch" id="batch" type="number" class="form-control" >
+        </div>
+        <div class="col-12">
+            <label for="exampleInputPassword1"  >Department</label>
+            <input name="Department" id="Department" type="text" class="form-control" >
+        </div>
+        <button type="submit" class="btn btn-success">Add student</button>
+      </form>
+</div>
+{% endblock content %}
+
+
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        {% if student %}
+        {% for i in student %}
+        <div class="col-12 border mb-3">
+            <div class="fs-5 fw-bold">name: {{i.name}}</div>
+            <div class="fs-5 fw-bold">email: {{i.email}}</div>
+            <div class="fs-5 fw-bold">register number: {{i.register_number}}</div>
+            <div class="fs-5 fw-bold">course: {{i.course}}</div>
+            <div class="fs-5 fw-bold">batch: {{i.batch}}</div>
+            <div class="fs-5 fw-bold">department: {{i.Department}}</div>
+            <button type="button" class="btn btn-warning">Delete</button>
+            <button type="button" class="btn btn-info">Edit</button>
+            <button type="button" class="btn btn-light">add achievement</button>
+            <button type="button" class="btn btn-dark">Dark</button>
+              
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}
